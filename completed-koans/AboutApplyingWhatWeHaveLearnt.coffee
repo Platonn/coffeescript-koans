@@ -20,28 +20,37 @@ describe 'About Applying What We Have Learnt', ->
           break
       return hasInvalidOperation
 
-    findNeedle(operations).should.equal FILL_ME_IN
+    findNeedle(operations).should.equal true
 
-  xit 'should find needle in a haystack (functional)', ->
+  it 'should find needle in a haystack (functional)', ->
     # FILL_ME_IN solution goes in here
     # HINT: one way of doing this would be a 'for in when' construct using sum and
     # filter functions, the existential operator is also useful
-    findNeedle(operations).should.equal FILL_ME_IN
+    findNeedle = (ops) ->
+      (ops.filter (op) -> op.direction is 'FWD' and op.distance > 100)?
 
-  xit 'should add all the natural numbers below 1000 that are multiples of 3 or 5 (imperative)', ->
+    findNeedle(operations).should.equal true
+
+  it 'should add all the natural numbers below 1000 that are multiples of 3 or 5 (imperative)', ->
     total = 0
     for i in [1..1000]
       if (i % 3 == 0 || i % 5 == 0)
         total += i
-    total.should.equal FILL_ME_IN
+    total.should.equal 234168
 
-  xit 'should add all the natural numbers below 1000 that are multiples of 3 or 5 (functional)', ->
+  it 'should add all the natural numbers below 1000 that are multiples of 3 or 5 (functional)', ->
     # FILL_ME_IN solution goes in here
     # HINT: one way of doing this would be a 'for in when' construct using sum and
     # filter functions
-    FILL_ME_IN.should.equal 234168
+    isMultipleOf3Or5 = (a) -> a%3==0 || a%5==0
 
-  xit 'should find the sum of all the even valued terms in the fibonacci sequence which do not exceed four million (imperative)', ->
+    total = 0
+    sum = (a) -> total = total + a
+    sum x for x in [1..1000] when isMultipleOf3Or5(x)
+
+    total.should.equal 234168
+
+  it 'should find the sum of all the even valued terms in the fibonacci sequence which do not exceed four million (imperative)', ->
     sum = 0
     fib = [0, 1, 1]
     i = 3
@@ -54,13 +63,17 @@ describe 'About Applying What We Have Learnt', ->
         sum += currentFib
       i+=1
 
-    sum.should.equal FILL_ME_IN
+    sum.should.equal 4613732
 
-  xit 'should find the sum of all the even valued terms in the fibonacci sequence which do not exceed four million (functional)', ->
+  it 'should find the sum of all the even valued terms in the fibonacci sequence which do not exceed four million (functional)', ->
     # FILL_ME_IN solution goes in here
     # HINT: one way of doing this would be to construct an array of Fibonacci numbers
     # using a function and a while loop, and then to filter it using an even function
-    FILL_ME_IN.should.equal 4613732
+    sum = 0
+    fib = [0, 1, 1]
+    i = 3
+    i = i+1 while(fib[i] = fib[i-1] + fib[i-2]) < 4000000
+    ((f for f in fib when (f % 2 == 0)).reduce (acumulator, value) -> acumulator + value).should.equal 4613732
 
 ###
 # UNCOMMENT FOR EXTRA CREDIT
