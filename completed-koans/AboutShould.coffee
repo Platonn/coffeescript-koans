@@ -16,34 +16,35 @@ FILL_ME_IN = 'Fill this value in' # Don't touch this one!
 describe 'About Should', ->
   # We shall contemplate truth by testing reality
   it 'should expect true', ->
-    FILL_ME_IN.should.be.true 
+    true.should.be.true
     # The first part (FILL_ME_IN) should be 'true' 
     # Note absence of () at the end - true is not a function
 
   # Sometimes we will ask you to fill in the values
   # Note: 'xit' denotes a pending test
   # change 'xit' to 'it' to enable the test
-  xit 'should have filled in values', ->
-    FILL_ME_IN.should.equal 1 + 1 
+  it 'should have filled in values', ->
+    2.should.equal 1 + 1
     # Note absence of parentheses around the addition
     # equal(toValue) is a function but brackets are optional
 
-  xit 'should understand type coercion is fixed', ->
+  it 'should understand type coercion is fixed', ->
     # The 'is' is the same as Javascript's === operator
     (0 is '0').should.be.false # unlike JavaScript's ==
-    1.should.be.true # Why not? What should we replace it with?
+    (0 == '0').should.be.false
+    true.should.be.true # Why not? What should we replace it with?
     # Hint: search the Chai.js docs for 'truthy'
 
   # To understand reality, we must compare our expectations against reality.
-  xit 'should expect equality', ->
-    expectedValue = FILL_ME_IN
+  it 'should expect equality', ->
+    expectedValue = 2
     actualValue = 1 + 1
     (expectedValue == actualValue).should.be.true
     # == is the same as 'is' i.e. JavaScript's === operator
 
   # Some ways of asserting equality are better than others.
-  xit 'should assert equality a better way', ->
-    expectedValue = FILL_ME_IN
+  it 'should assert equality a better way', ->
+    expectedValue = 2
     actualValue = 1 + 1
     # Chai's equal() function works like ===
     actualValue.should.equal expectedValue

@@ -4,22 +4,22 @@ FILL_ME_IN = 'Fill this value in' # Don't touch this one!
 describe 'About Objects', ->
   describe 'for properties', ->
     meglomaniac = {}
-    beforeEach -> 
+    beforeEach -> #before each 'it' we setup test inside describe
       meglomaniac = 
         mastermind: 'Joker'
         henchwoman: 'Harley'
 
     it 'should confirm objects are collections of properties', ->
-      meglomaniac.mastermind.should.equal FILL_ME_IN
+      meglomaniac.mastermind.should.equal 'Joker'
 
-    xit 'should confirm that properties are case sensitive', ->
-      meglomaniac.henchwoman.should.equal FILL_ME_IN
-      should.exist meglomaniac.henchWoman # make this right
+    it 'should confirm that properties are case sensitive', ->
+      meglomaniac.henchwoman.should.equal 'Harley'
+      should.not.exist meglomaniac.henchWoman # make this right
       # Hint: invert the assertion
   # end Properties section
 
   describe 'for methods', ->
-    xit 'should know properties that are functions act like methods', ->
+    it 'should know properties that are functions act like methods', ->
       # Coffeescript supports multi-line assignments and heredocs
       meglomaniac =
         mastermind: 'Brain'
@@ -30,7 +30,7 @@ describe 'About Objects', ->
           # Remember: '@' means 'this.'
 
       battleCry = meglomaniac.battleCry 3
-      battleCry.should.equal FILL_ME_IN
+      battleCry.should.equal 'They are Pinky and the Brain Brain Brain'
 
 
     xit "should confirm that when a function is attached to an object, 'this' refers to the object", ->
