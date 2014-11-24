@@ -33,7 +33,7 @@ describe 'About Objects', ->
       battleCry.should.equal 'They are Pinky and the Brain Brain Brain'
 
 
-    xit "should confirm that when a function is attached to an object, 'this' refers to the object", ->
+    it "should confirm that when a function is attached to an object, 'this' refers to the object", ->
       currentYear = (new Date).getFullYear()
       meglomaniac =
         mastermind: 'James Wood'
@@ -41,8 +41,8 @@ describe 'About Objects', ->
         birthYear: 1970
         calculateAge: -> currentYear - @birthYear
 
-      currentYear.should.equal FILL_ME_IN
-      meglomaniac.calculateAge().should.equal FILL_ME_IN
+      currentYear.should.equal 2014 # uwaga, wazne tylko w tym roku! :)
+      meglomaniac.calculateAge().should.equal 2014 - 1970
   # end methods section
 
   describe "for the 'in' keyword", ->
@@ -53,43 +53,44 @@ describe 'About Objects', ->
         henchwoman: 'Dr Girlfriend'
         theBomb: true
 
-    xit 'should have the bomb', ->
+    it 'should have the bomb', ->
       hasBomb = meglomaniac.theBomb? # ? is the existence operator
-      hasBomb.should.equal FILL_ME_IN
+      hasBomb.should.equal true
 
-    xit 'should not have the detonator however', ->
+    it 'should not have the detonator however', ->
       hasDetonator = meglomaniac.theDetonator?
-      hasDetonator.should.equal FILL_ME_IN
+      hasDetonator.should.equal false
   # end 'in' keyword section
 
   describe 'for altering objects', ->
-    xit 'should know that properties can be added and deleted', ->
+    it 'should know that properties can be added and deleted', ->
       meglomaniac =
         mastermind : 'Agent Smith'
         henchman: 'Agent Smith'
 
-      meglomaniac.secretary?.should.equal FILL_ME_IN
+      meglomaniac.secretary?.should.equal false
       # Remember that '?' is the existential operator
 
       meglomaniac.secretary = 'Agent Smith'
-      meglomaniac.secretary?.should.equal FILL_ME_IN
+      meglomaniac.secretary?.should.equal 'Agent Smith' # nie rozumiem, ? mialo znaczyc jesli istnieje
 
       delete meglomaniac.henchman
-      meglomaniac.henchman?.should.equal FILL_ME_IN
+      meglomaniac.henchman?.should.equal false
 
-    xit 'should use prototype to add to all objects', ->
+    it 'should use prototype to add to all objects', ->
         Circle = (radius) -> @radius = radius
 
         simpleCircle = new Circle(10)
         colouredCircle = new Circle(5)
         colouredCircle.colour = 'red'
 
-        simpleCircle.colour.should.equal undefined # Again, fix it 
-        colouredCircle.colour.should.equal FILL_ME_IN
+        #simpleCircle.colour.should.equal undefined # Again, fix it
+        should.not.exist simpleCircle.colour
+        colouredCircle.colour.should.equal 'red'
 
         Circle::describe = -> 
           'This circle has a radius of: ' + @radius
 
-        simpleCircle.describe().should.equal FILL_ME_IN
-        colouredCircle.describe().should.equal FILL_ME_IN
+        simpleCircle.describe().should.equal 'This circle has a radius of: 10'
+        colouredCircle.describe().should.equal 'This circle has a radius of: 5'
   # end altering objects section

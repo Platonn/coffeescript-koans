@@ -56,9 +56,9 @@ describe 'About Higher Order Functions', ->
     total = (i, a) -> i + a
     reduction = numbers.reduce total # Javascript style reduce
 
-    reduction.should.equal FILL_ME_IN
+    reduction.should.equal 6
 
-  xit 'should use a CoffeeScript-style reduce to calculate a total', ->
+  it 'should use a CoffeeScript-style reduce to calculate a total', ->
     numbers = [1..3]
     total = 0
     # I'm a little unhappy with this as it uses a side-effect, but as comprehensions
@@ -67,4 +67,4 @@ describe 'About Higher Order Functions', ->
     sum = (a) -> total = total + a
     sum x for x in numbers
 
-    total.should.equal FILL_ME_IN
+    total.should.equal 6

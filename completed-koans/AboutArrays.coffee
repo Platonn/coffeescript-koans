@@ -90,7 +90,7 @@ describe 'About Arrays', ->
       accumulator.should.equal 7
 
     # I do not think that word means what you think it means
-    xit 'should slice arrays', ->
+    it 'should slice arrays', ->
       array = ['peanut', 'butter', 'and', 'jelly']
 
       array.slice(0, 1).should.deep.equal ['peanut']
@@ -98,7 +98,7 @@ describe 'About Arrays', ->
       array.slice(2, 2).should.deep.equal [] # What? Why?
       array.slice(2).should.deep.equal ['and', 'jelly'] # end?
       array.slice(2, 20).should.deep.equal ['and', 'jelly']
-      array.slice(3, 0).should.deep.equal ['jelly']
+      array.slice(3, 0).should.deep.equal []
       array.slice(3, 100).should.deep.equal ['jelly']
       array.slice(5, 1).should.deep.equal []
       # Hint: look up http://j.mp/1lD9RXI
